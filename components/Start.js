@@ -1,4 +1,13 @@
-import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
+import { 
+    StyleSheet,
+    View, 
+    Text, 
+    TextInput, 
+    ImageBackground, 
+    TouchableOpacity, 
+    KeyboardAvoidingView,
+    Platform
+} from "react-native";
 import { useState } from "react";
 
 const Start = ({navigation}) => {
@@ -6,7 +15,7 @@ const Start = ({navigation}) => {
     const [backgroundColor, setBackgroundColor] = useState('');
 
     return (
-        <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}> 
+        <View style={styles.container}> 
             <ImageBackground source={require('../assets/background-img.png')} style={styles.backgroundImg}>         
                 <Text style={styles.title}>Chat App</Text>
                 <View style={styles.box}>
@@ -20,24 +29,39 @@ const Start = ({navigation}) => {
                         <Text style={styles.chooseColorText}>Choose a background color:</Text>
                         <View style={styles.colorContainer}>
                             <TouchableOpacity 
+                                accessible={true}
+                                accessibilityRole="button"
+                                accessibilityHint="Allows you to choose the background color of your chatroom"
                                 style={[styles.colors, {backgroundColor: '#090C08', opacity: backgroundColor === '#090C08' ? 1 : 0.3} ]}
                                 onPress={() => setBackgroundColor('#090C08')}
                                 /> 
-                            <TouchableOpacity 
+                            <TouchableOpacity
+                                accessible={true}
+                                accessibilityRole="button"
+                                accessibilityHint="Allows you to choose the background color of your chatroom" 
                                 style={[styles.colors, {backgroundColor: '#474056', opacity: backgroundColor === '#474056' ? 1 : 0.3} ]}
                                 onPress={() => setBackgroundColor('#474056')}
                                 />
                             <TouchableOpacity 
+                                accessible={true}
+                                accessibilityRole="button"
+                                accessibilityHint="Allows you to choose the background color of your chatroom"
                                 style={[styles.colors, {backgroundColor: '#8A95A5', opacity: backgroundColor === '#8A95A5' ? 1 : 0.3} ]}
                                 onPress={() => setBackgroundColor('#8A95A5')}
                                 />
                             <TouchableOpacity 
+                                accessible={true}
+                                accessibilityRole="button"
+                                accessibilityHint="Allows you to choose the background color of your chatroom"
                                 style={[styles.colors, {backgroundColor: '#B9C6AE', opacity: backgroundColor === '#B9C6AE' ? 1 : 0.3} ]}
                                 onPress={() => setBackgroundColor('#B9C6AE')}
                                 />
                         </View>
                     </View>
                     <TouchableOpacity 
+                        accessible={true}
+                        accessibilityRole="button"
+                        accessibilityHint="Grants access to the chatroom"
                         style={styles.button}
                         onPress={() => navigation.navigate('Chat', {name: name, backgroundColor: backgroundColor })}
                         >
@@ -45,7 +69,8 @@ const Start = ({navigation}) => {
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
-        </KeyboardAvoidingView>
+            {Platform.OS === "ios" ? <KeyboardAvoidingView behavior="padding" />: null}
+        </View>
     )
 }
 
