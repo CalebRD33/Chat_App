@@ -5,6 +5,8 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Development Environment](#development-environment)
+- [Setup Project](#setup-project)
+- [Run the App on an Emulator of Your Choice](#run-the-app-on-an-emulator-of-your-choice)
 
 ## Overview
 
