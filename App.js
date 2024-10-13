@@ -1,19 +1,22 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-const Stack = createNativeStackNavigator();
-
-import { initializeApp } from "firebase/app";
-import { getFirestore, disableNetwork, enableNetwork } from "firebase/firestore";
-
 import Start from './components/Start.js';
 import Chat from './components/Chat.js';
 
+// import react Navigation
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// Create the navigator
+const Stack = createNativeStackNavigator();
+
+// import functions for initializing firestore
+import { initializeApp } from "firebase/app";
+import { getFirestore, disableNetwork, enableNetwork } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useEffect } from 'react';
-
 import { LogBox, Alert } from 'react-native';
 LogBox.ignoreLogs(["AsyncStorage has been extracted from"]);
+LogBox.ignoreLogs(["@firebase/auth: Auth"])
 
 const App = () => {
   const connectionStatus = useNetInfo();
@@ -43,16 +46,24 @@ const App = () => {
   // Initialize Cloud Firestore and get a reference to the service
   const db = getFirestore(app);
 
+  // initialize the storage handler
+  const storage = getStorage(app);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Start'>
+      <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen
-          name="Start"
+          name="Login"
           component={Start}
         />
         <Stack.Screen
           name="Chat">
-          {(props) => <Chat isConnected={connectionStatus.isConnected} db={db} {...props} />}
+          {(props) => <Chat 
+            isConnected={connectionStatus.isConnected} 
+            db={db} 
+            storage={storage}
+            {...props} 
+          />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

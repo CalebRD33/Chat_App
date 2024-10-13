@@ -31,7 +31,9 @@ const Start = ({navigation}) => {
     return (
         <View style={styles.container}> 
             <ImageBackground source={require('../assets/background-img.png')} style={styles.backgroundImg}>         
-                <Text style={styles.title}>Chat App</Text>
+                <Text style={styles.title}>Echo</Text>
+                <Text style={styles.subTitle}>Live Chat</Text>
+
                 <View style={styles.box}>
                     <TextInput 
                         style={styles.textInput}
@@ -98,8 +100,15 @@ const styles = StyleSheet.create({
         fontSize: 45,
         fontWeight: '600',
         color: '#FFFFFF',
-        marginBottom: 250,
         marginTop: 50
+    },
+    subTitle: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: 'yellow',
+        marginBottom: 250,
+        fontStyle: 'italic',
+        
     },
     textInput: {
         fontSize: 16,
