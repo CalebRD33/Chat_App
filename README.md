@@ -8,7 +8,7 @@
 - [Setup Project](#setup-project)
 - [Run the App on an Emulator of Your Choice](#run-the-app-on-an-emulator-of-your-choice)
 
-![Screenshot of the Echo Live Chat](img/Chat_App.png)
+![Screenshot of the Echo Live Chat](assets/Chat_App.png)
 
 ## Overview
 
